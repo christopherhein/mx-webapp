@@ -4,6 +4,6 @@ WORKDIR /src
 RUN go build -o app
 
 FROM alpine
-WORKDIR /app
+ADD index.html /
 COPY --from=build /src/app /app
 ENTRYPOINT ./app

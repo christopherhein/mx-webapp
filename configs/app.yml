@@ -9,9 +9,10 @@ spec:
     app: webapp
   ports:
   - port: 8080
+    nodePort: 30000
     targetPort: http-server
     name: http
-  type: LoadBalancer
+  type: NodePort
 
 ---
 apiVersion: apps/v1beta1
