@@ -1,13 +1,9 @@
-FROM ruby:2.4-alpine3.6
-MAINTAINER Christopher Hein <me@christopherhein.com>
+FROM golang:alpine AS build
+ADD . /src
+WORKDIR /src
+RUN go build -o app
 
-ENV APP_HOME /app
-ENV HOME /root
-RUN mkdir $APP_HOME
-WORKDIR $APP_HOME
-COPY Gemfile* $APP_HOME/
-RUN bundle install
-
-COPY . $APP_HOME
-
-CMD ["ruby", "app.rb"]
+FROM alpine
+ADD index.html /
+COPY --from=build /src/app /app
+ENTRYPOINT ./app
