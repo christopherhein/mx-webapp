@@ -31,6 +31,7 @@ spec:
       containers:
       - name: webapp
         image: christopherhein/mx-webapp:VERSION_NUMBER
+        imagePullPolicy: Always
         ports:
         - name: http-server
           containerPort: 8080
